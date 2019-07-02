@@ -11,16 +11,8 @@
     <style name="CustomCirclePageIndicator">
         <item name="fillColor">#000000</item>
         <item name="strokeColor">#BDBDBD</item>
-        <item name="strokeWidth">3dp</item>
-        <item name="radius">5.5dp</item>
-        <item name="centered">true</item>
-    </style>
-
-    <style name="CustomCirclePageIndicatorLand">
-        <item name="fillColor">#000000</item>
-        <item name="strokeColor">#BDBDBD</item>
-        <item name="strokeWidth">4dp</item>
-        <item name="radius">8dp</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="radius">4dp</item>
         <item name="centered">true</item>
     </style>
 

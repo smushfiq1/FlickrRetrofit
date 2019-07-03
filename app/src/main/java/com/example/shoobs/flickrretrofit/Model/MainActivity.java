@@ -1,22 +1,21 @@
 package com.example.shoobs.flickrretrofit.Model;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.shoobs.flickrretrofit.Adapter.ImagePagerAdapter;
+import com.example.shoobs.flickrretrofit.R;
+import com.example.shoobs.flickrretrofit.Retrofit.Feed;
 import com.example.shoobs.flickrretrofit.Retrofit.FlickerData;
 import com.example.shoobs.flickrretrofit.Retrofit.FlickrApi;
-import com.example.shoobs.flickrretrofit.Adapter.ImagePagerAdapter;
-import com.example.shoobs.flickrretrofit.Retrofit.Feed;
-import com.example.shoobs.flickrretrofit.R;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
 	private void loadData () {
+
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl(BASE_URL)
 				.addConverterFactory(GsonConverterFactory.create())
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 	private void showData (List<Feed> result) {
 
 		ViewPager viewPager = findViewById(R.id.view_pager);
+		viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
 		/**
 		 * set adapter with the data parsed
@@ -117,22 +118,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 	public void onRefresh () {
 		swipeRefresh();
 		SwipeRefresh.setRefreshing(false);
-	}
-
-
-
-	@Override
-	public void onConfigurationChanged (Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-
-		/**
-		 * Checks the orientation of the screen
-		 */
-		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-		} else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-			Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
-		}
 	}
 
 }

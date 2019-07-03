@@ -1,14 +1,15 @@
 package com.example.shoobs.flickrretrofit.Adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.shoobs.flickrretrofit.Retrofit.Feed;
 import com.example.shoobs.flickrretrofit.Retrofit.Media;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 public class ImagePagerAdapter extends FragmentPagerAdapter {
 

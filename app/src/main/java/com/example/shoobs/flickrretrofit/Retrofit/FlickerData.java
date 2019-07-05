@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class FlickerData {
 
-	private ArrayList<Feed> items;
+	 private ArrayList<Feed> items;
 
 
 

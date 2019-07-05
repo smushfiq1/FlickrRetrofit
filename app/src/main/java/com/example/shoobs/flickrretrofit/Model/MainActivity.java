@@ -1,11 +1,15 @@
 package com.example.shoobs.flickrretrofit.Model;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.example.shoobs.flickrretrofit.Adapter.ImagePagerAdapter;
 import com.example.shoobs.flickrretrofit.R;
 import com.example.shoobs.flickrretrofit.Retrofit.Feed;
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.List;
@@ -19,7 +23,6 @@ import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-	private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
 	private SwipeRefreshLayout SwipeRefresh;
 
@@ -30,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Log.e(LOG_TAG, "onCreate()");
 
 
 		SwipeRefresh = findViewById(R.id.swipeRefresh);
@@ -49,8 +51,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 			@Override
 			public void onChanged (final List<Feed> feedList) {
 
-				// update UI
-				Log.d(LOG_TAG, "Done with FeedViewModel");
 				ViewPager viewPager = findViewById(R.id.view_pager);
 				viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
@@ -92,6 +92,33 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 		swipeRefresh();
 		SwipeRefresh.setRefreshing(false);
 
+	}
+
+
+
+	/**
+	 * The MenuInflator class allows to inflate actions defined in the library.xml file and adds it to the action bar.
+	 */
+
+	@Override
+	public boolean onCreateOptionsMenu (Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.library, menu);
+		return true;
+	}
+
+
+
+	@Override
+	public boolean onOptionsItemSelected (MenuItem item) {
+		if (item.getItemId() == R.id.license_info) {
+
+
+			startActivity(new Intent(this, OssLicensesMenuActivity.class));
+			return true;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 }

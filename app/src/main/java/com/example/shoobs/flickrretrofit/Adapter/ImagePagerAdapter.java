@@ -20,6 +20,7 @@ public class ImagePagerAdapter extends FragmentPagerAdapter {
 
 
 	public ImagePagerAdapter (FragmentManager fm, List<Feed> result) {
+		//noinspection deprecation
 		super(fm);
 		fragments = new ArrayList<>();
 

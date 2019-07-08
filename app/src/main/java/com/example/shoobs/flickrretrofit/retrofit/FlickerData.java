@@ -1,6 +1,8 @@
 package com.example.shoobs.flickrretrofit.retrofit;
 
 
+import com.example.shoobs.flickrretrofit.model.Feed;
+
 import java.util.ArrayList;
 
 

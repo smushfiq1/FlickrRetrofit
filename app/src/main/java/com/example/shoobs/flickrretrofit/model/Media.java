@@ -1,4 +1,4 @@
-package com.example.shoobs.flickrretrofit.retrofit;
+package com.example.shoobs.flickrretrofit.model;
 
 public class Media {
 

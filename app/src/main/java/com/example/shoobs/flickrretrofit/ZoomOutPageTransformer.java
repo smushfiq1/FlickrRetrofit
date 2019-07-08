@@ -1,4 +1,4 @@
-package com.example.shoobs.flickrretrofit.model;
+package com.example.shoobs.flickrretrofit;
 
 import android.view.View;
 

@@ -7,8 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.shoobs.flickrretrofit.adapter.ImagePagerAdapter;
-import com.example.shoobs.flickrretrofit.model.ZoomOutPageTransformer;
-import com.example.shoobs.flickrretrofit.retrofit.Feed;
+import com.example.shoobs.flickrretrofit.model.Feed;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 

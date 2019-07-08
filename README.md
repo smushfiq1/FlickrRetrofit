@@ -42,6 +42,7 @@ Technical Project that parses Flickr images from the public JSON stream using Re
   
   
 # Screenshots
-![](scroll_gif.gif)
+![](scroll_gif1.gif)
+![](info_gif.gif)
 ![](screenshot1.png)
 ![](screenshot2.png)

@@ -47,7 +47,6 @@ dependencies {
 
 	//dependency for Android ViewModel
 	implementation "android.arch.lifecycle:extensions:1.1.1"
-	implementation "android.arch.lifecycle:viewmodel:1.1.1"
 
 	//dependency for oss-licenses
 	implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'

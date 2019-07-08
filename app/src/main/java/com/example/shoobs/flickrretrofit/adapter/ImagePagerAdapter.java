@@ -2,7 +2,6 @@ package com.example.shoobs.flickrretrofit.adapter;
 
 
 import com.example.shoobs.flickrretrofit.model.Feed;
-import com.example.shoobs.flickrretrofit.model.Media;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class ImagePagerAdapter extends FragmentPagerAdapter {
 
 	private ArrayList<Fragment> fragments;
 	private FragmentManager fm;
-	private Media media;
+	//private Media media;
 
 
 
@@ -24,8 +23,8 @@ public class ImagePagerAdapter extends FragmentPagerAdapter {
 		super(fm);
 		fragments = new ArrayList<>();
 
-		/**
-		 * adds a fragment for each result with the m(link) and title
+		/*
+		  adds a fragment for each result with the m(link) and title
 		 */
 		for (Feed flickerData : result) {
 			fragments.add(FlickrItemFragment.getFragment(flickerData.getMedia().getM(), flickerData.getTitle()));

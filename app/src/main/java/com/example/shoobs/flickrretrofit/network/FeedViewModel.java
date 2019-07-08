@@ -1,10 +1,8 @@
-package com.example.shoobs.flickrretrofit;
+package com.example.shoobs.flickrretrofit.network;
 
 import android.util.Log;
 
 import com.example.shoobs.flickrretrofit.model.Feed;
-import com.example.shoobs.flickrretrofit.retrofit.FlickerData;
-import com.example.shoobs.flickrretrofit.retrofit.FlickrApi;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-class FeedViewModel extends ViewModel {
+public class FeedViewModel extends ViewModel {
 
 	private static final String LOG_TAG = FeedViewModel.class.getSimpleName();
 
@@ -25,7 +23,7 @@ class FeedViewModel extends ViewModel {
 
 
 
-	LiveData<List<Feed>> getFlickerDatas () {
+	public LiveData<List<Feed>> getFlickerDatas () {
 
 
 		feedList = new MutableLiveData<List<Feed>>();

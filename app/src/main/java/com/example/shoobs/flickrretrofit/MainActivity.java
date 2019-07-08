@@ -7,7 +7,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.shoobs.flickrretrofit.adapter.ImagePagerAdapter;
+import com.example.shoobs.flickrretrofit.adapter.ZoomOutPageTransformer;
 import com.example.shoobs.flickrretrofit.model.Feed;
+import com.example.shoobs.flickrretrofit.network.FeedViewModel;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 
 
 		SwipeRefresh = findViewById(R.id.swipeRefresh);

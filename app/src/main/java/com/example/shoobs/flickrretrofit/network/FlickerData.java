@@ -1,4 +1,4 @@
-package com.example.shoobs.flickrretrofit.retrofit;
+package com.example.shoobs.flickrretrofit.network;
 
 
 import com.example.shoobs.flickrretrofit.model.Feed;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class FlickerData {
 
-	 private ArrayList<Feed> items;
+	private ArrayList<Feed> items;
 
 
 

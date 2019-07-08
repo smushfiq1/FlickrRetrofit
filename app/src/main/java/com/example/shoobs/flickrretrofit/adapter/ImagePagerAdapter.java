@@ -1,8 +1,8 @@
-package com.example.shoobs.flickrretrofit.Adapter;
+package com.example.shoobs.flickrretrofit.adapter;
 
 
-import com.example.shoobs.flickrretrofit.Retrofit.Feed;
-import com.example.shoobs.flickrretrofit.Retrofit.Media;
+import com.example.shoobs.flickrretrofit.retrofit.Feed;
+import com.example.shoobs.flickrretrofit.retrofit.Media;
 
 import java.util.ArrayList;
 import java.util.List;

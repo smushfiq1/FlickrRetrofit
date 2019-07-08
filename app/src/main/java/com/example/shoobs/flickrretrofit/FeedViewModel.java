@@ -1,10 +1,10 @@
-package com.example.shoobs.flickrretrofit.Model;
+package com.example.shoobs.flickrretrofit;
 
 import android.util.Log;
 
-import com.example.shoobs.flickrretrofit.Retrofit.Feed;
-import com.example.shoobs.flickrretrofit.Retrofit.FlickerData;
-import com.example.shoobs.flickrretrofit.Retrofit.FlickrApi;
+import com.example.shoobs.flickrretrofit.retrofit.Feed;
+import com.example.shoobs.flickrretrofit.retrofit.FlickerData;
+import com.example.shoobs.flickrretrofit.retrofit.FlickrApi;
 
 import java.util.List;
 

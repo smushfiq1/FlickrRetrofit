@@ -1,4 +1,4 @@
-package com.example.shoobs.flickrretrofit.Retrofit;
+package com.example.shoobs.flickrretrofit.retrofit;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

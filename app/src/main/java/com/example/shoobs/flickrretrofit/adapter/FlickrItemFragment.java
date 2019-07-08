@@ -1,4 +1,4 @@
-package com.example.shoobs.flickrretrofit.Adapter;
+package com.example.shoobs.flickrretrofit.adapter;
 
 import android.os.Bundle;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.example.shoobs.flickrretrofit.Model;
+package com.example.shoobs.flickrretrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.example.shoobs.flickrretrofit.Adapter.ImagePagerAdapter;
-import com.example.shoobs.flickrretrofit.R;
-import com.example.shoobs.flickrretrofit.Retrofit.Feed;
+import com.example.shoobs.flickrretrofit.adapter.ImagePagerAdapter;
+import com.example.shoobs.flickrretrofit.model.ZoomOutPageTransformer;
+import com.example.shoobs.flickrretrofit.retrofit.Feed;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 

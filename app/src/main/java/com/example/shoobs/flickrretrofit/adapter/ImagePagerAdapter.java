@@ -8,28 +8,20 @@ import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class ImagePagerAdapter extends FragmentPagerAdapter {
+public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 
-	private ArrayList<Fragment> fragments;
-	private FragmentManager fm;
-	//private Media media;
+	private static final String LOG_TAG = ImagePagerAdapter.class.getSimpleName();
+
+	private List<Feed> data;
 
 
 
-	public ImagePagerAdapter (FragmentManager fm, List<Feed> result) {
-		//noinspection deprecation
+
+	public ImagePagerAdapter (FragmentManager fm) {
 		super(fm);
-		fragments = new ArrayList<>();
-
-		/*
-		  adds a fragment for each result with the m(link) and title
-		 */
-		for (Feed flickerData : result) {
-			fragments.add(FlickrItemFragment.getFragment(flickerData.getMedia().getM(), flickerData.getTitle()));
-		}
-		this.fm = fm;
+		this.data = new ArrayList<>();
 	}
 
 
@@ -39,7 +31,8 @@ public class ImagePagerAdapter extends FragmentPagerAdapter {
 	 */
 	@Override
 	public Fragment getItem (int i) {
-		return fragments.get(i);
+		Feed feed = data.get(i);
+		return FlickrItemFragment.getFragment(feed.getMedia().getM(), feed.getTitle());
 	}
 
 
@@ -50,22 +43,28 @@ public class ImagePagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount () {
-		return fragments.size();
+		return data.size();
 	}
 
 
 
-	/**
-	 * called from postExecute to begin the removal of old data if the adapter is not empty
-	 */
-
-	public void clear () {
-		for (Fragment fragment : fragments) {
-			fm.beginTransaction()
-					.remove(fragment)
-					.commitNowAllowingStateLoss();
-		}
-		fragments.clear();
+	public void update (final List<Feed> newData) {
+		data = newData;
+		notifyDataSetChanged();
 	}
+
+
+
+	@Override
+	public int getItemPosition (Object object) {
+		// refresh all fragments when data set changed
+		return POSITION_NONE;
+
+	}
+
+
 
 }
+
+
+

@@ -1,7 +1,9 @@
 package com.example.shoobs.flickrretrofit.model;
 
 
-public class Feed {
+import androidx.fragment.app.Fragment;
+
+public class Feed extends Fragment {
 
 	private String title;
 

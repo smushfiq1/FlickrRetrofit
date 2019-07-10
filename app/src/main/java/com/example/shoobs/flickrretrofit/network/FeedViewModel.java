@@ -46,13 +46,17 @@ public class FeedViewModel extends ViewModel {
 
 		FlickrApi flickrApi = retrofit.create(FlickrApi.class);
 		Call<FlickerData> call = flickrApi.getFlickerDatas();
+
 		call.enqueue(new Callback<FlickerData>() {
 
 			@Override
-			public void onResponse (Call<FlickerData> call, Response<FlickerData> response) {
+			public void onResponse (Call<FlickerData> call, Response<FlickerData>  response) {
 				Log.d(LOG_TAG, "onResponse: Server Response: " + response.toString());
 
 				feedList.setValue(response.body().getItems());
+
+
+
 			}
 
 

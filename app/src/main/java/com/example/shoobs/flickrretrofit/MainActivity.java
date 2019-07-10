@@ -2,6 +2,8 @@ package com.example.shoobs.flickrretrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,8 +26,11 @@ import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-
+	private static final String LOG_TAG = MainActivity.class.getSimpleName();
 	private SwipeRefreshLayout SwipeRefresh;
+
+	ImagePagerAdapter adapter;
+	ViewPager viewPager ;
 
 
 
@@ -34,12 +39,20 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-
 		SwipeRefresh = findViewById(R.id.swipeRefresh);
 		SwipeRefresh.setOnRefreshListener(this);
 
-		loadData();
+		viewPager = findViewById(R.id.view_pager);
 
+		//ViewPager viewPager = findViewById(R.id.view_pager);
+		viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+		adapter = new ImagePagerAdapter(getSupportFragmentManager());
+		viewPager.setAdapter(adapter);
+
+		CirclePageIndicator mIndicator = findViewById(R.id.indicator);
+		mIndicator.setViewPager(viewPager);
+
+		loadData();
 	}
 
 
@@ -48,40 +61,26 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 		FeedViewModel feedViewModel = ViewModelProviders.of(this).get(FeedViewModel.class);
 		feedViewModel.getFlickerDatas().observe(this, new Observer<List<Feed>>() {
+
 			@Override
 			public void onChanged (final List<Feed> feedList) {
 
-				ViewPager viewPager = findViewById(R.id.view_pager);
-				viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
-				/**
-				 * set adapter with the data parsed
-				 */
-				viewPager.setAdapter(new ImagePagerAdapter(getSupportFragmentManager(), feedList));
-				CirclePageIndicator mIndicator = findViewById(R.id.indicator);
-				mIndicator.setViewPager(viewPager);
 
+				Handler handler = new Handler();
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						viewPager.setCurrentItem(0);
+						adapter.update(feedList);
+
+					}
+				}, 2000);
+//				viewPager.setCurrentItem(0);
+//				adapter.update(feedList);
 			}
 		});
 
-	}
-
-
-
-	/**
-	 * On down swipe, it executes the AsyncTask to parse JSON
-	 */
-	public void swipeRefresh () {
-
-
-		ViewPager viewPager = findViewById(R.id.view_pager);
-		/**
-		 * clear adapter if it is not empty
-		 */
-		((ImagePagerAdapter) viewPager.getAdapter()).clear();
-		viewPager.setAdapter(null);
-
-		loadData();
 
 	}
 
@@ -89,7 +88,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 	@Override
 	public void onRefresh () {
-		swipeRefresh();
+		loadData();
+		Log.d(LOG_TAG, "swipeRefresh " );
 		SwipeRefresh.setRefreshing(false);
 
 	}
@@ -122,10 +122,3 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 	}
 
 }
-
-
-
-
-
-
-

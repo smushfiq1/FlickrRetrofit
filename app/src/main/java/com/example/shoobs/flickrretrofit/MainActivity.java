@@ -3,7 +3,6 @@ package com.example.shoobs.flickrretrofit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,17 +10,18 @@ import android.view.MenuItem;
 import com.example.shoobs.flickrretrofit.adapter.ImagePagerAdapter;
 import com.example.shoobs.flickrretrofit.adapter.ZoomOutPageTransformer;
 import com.example.shoobs.flickrretrofit.model.Feed;
+import com.example.shoobs.flickrretrofit.network.DataWrapper;
 import com.example.shoobs.flickrretrofit.network.FeedViewModel;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.viewpagerindicator.CirclePageIndicator;
-
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
+
+import static com.example.shoobs.flickrretrofit.network.DataWrapper.Status;
 
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 	ImagePagerAdapter adapter;
 	ViewPager viewPager ;
+
+	Status status;
+
 
 
 
@@ -44,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 		viewPager = findViewById(R.id.view_pager);
 
-		//ViewPager viewPager = findViewById(R.id.view_pager);
 		viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 		adapter = new ImagePagerAdapter(getSupportFragmentManager());
 		viewPager.setAdapter(adapter);
@@ -60,19 +62,29 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 	private void loadData () {
 
 		FeedViewModel feedViewModel = ViewModelProviders.of(this).get(FeedViewModel.class);
-		feedViewModel.getFlickerDatas().observe(this, new Observer<List<Feed>>() {
+		feedViewModel.getFlickerDatas().observe(this, new Observer<DataWrapper<Feed>>() {
 
 			@Override
-			public void onChanged (final List<Feed> feedList) {
-
-
+			public void onChanged (final DataWrapper<Feed> dataWrapper) {
 
 				Handler handler = new Handler();
 				handler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
-						viewPager.setCurrentItem(0);
-						adapter.update(feedList);
+
+						switch (dataWrapper.getStatus()){
+							case NONE:
+								viewPager.setCurrentItem(0);
+								adapter.update(dataWrapper.getData());
+								SwipeRefresh.setRefreshing(false);
+								break;
+							case ERROR:
+								SwipeRefresh.setRefreshing(false);
+								break;
+							case LOADING:
+								break;
+
+						}
 
 					}
 				}, 2000);
@@ -82,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 		});
 
 
+
+
 	}
 
 
@@ -89,8 +103,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 	@Override
 	public void onRefresh () {
 		loadData();
-		Log.d(LOG_TAG, "swipeRefresh " );
-		SwipeRefresh.setRefreshing(false);
+//		SwipeRefresh.setRefreshing(false);
 
 	}
 

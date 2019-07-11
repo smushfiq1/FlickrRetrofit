@@ -21,8 +21,6 @@ public class FeedViewModel extends ViewModel {
 
 	private MutableLiveData<DataWrapper<Feed>> mutableLiveData;
 
-	private Status status;
-
 
 
 	public LiveData<DataWrapper<Feed>> getFlickerDatas () {
@@ -50,18 +48,21 @@ public class FeedViewModel extends ViewModel {
 
 		mutableLiveData.getValue().setStatus(Status.LOADING);
 
+		mutableLiveData.setValue(mutableLiveData.getValue());
+
 		call.enqueue(new Callback<FlickerData>() {
 
 			@Override
 			public void onResponse (Call<FlickerData> call, Response<FlickerData> response) {
-				//Log.d(LOG_TAG, "onResponse: Server Response: " + response.toString());
-
 
 				if (response.isSuccessful()) {
-					mutableLiveData.getValue().setStatus(Status.NONE);
+
 					mutableLiveData.getValue().setData(response.body().getItems());
+					mutableLiveData.getValue().setStatus(Status.NONE);
+					mutableLiveData.setValue(mutableLiveData.getValue());
+
 				} else {
-					// error case
+
 					mutableLiveData.getValue().setStatus(Status.ERROR);
 
 				}

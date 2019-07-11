@@ -7,14 +7,18 @@
 
 
     <!--Your comment-->
+    <string name="no_connection_title">No Internet Connection</string>
+
+    <!--Your comment-->
+    <string name="no_connection">You need to be connected to ta network to use FlickrRetrofit. </string>
 
 
 
     <!--Your comment-->
-
+    <string name="settings">Go to Settings</string>
 
 
     <!--Your comment-->
-
+    <string name="cancel">Cancel</string>
 
 </resources>

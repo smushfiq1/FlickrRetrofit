@@ -3,7 +3,7 @@ package com.example.shoobs.flickrretrofit.network;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataWrapper <T> {
+public class DataWrapper<T> {
 
 
 	public enum Status {
@@ -11,6 +11,7 @@ public class DataWrapper <T> {
 		LOADING,
 		ERROR
 	}
+
 
 
 	private Status status;

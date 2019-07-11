@@ -12,10 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 
-	private static final String LOG_TAG = ImagePagerAdapter.class.getSimpleName();
-
 	private List<Feed> data;
-
 
 
 
@@ -61,8 +58,6 @@ public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 		return POSITION_NONE;
 
 	}
-
-
 
 }
 

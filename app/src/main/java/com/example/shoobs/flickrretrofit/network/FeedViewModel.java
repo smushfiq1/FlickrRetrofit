@@ -36,6 +36,10 @@ public class FeedViewModel extends ViewModel {
 
 	private void loadData () {
 
+		/**
+		 * Generates an implementation of the @FlickrApi interface
+		 */
+
 		final String BASE_URL = "https://api.flickr.com/services/feeds/";
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl(BASE_URL)
@@ -43,6 +47,10 @@ public class FeedViewModel extends ViewModel {
 				.build();
 
 		FlickrApi flickrApi = retrofit.create(FlickrApi.class);
+
+		/**
+		 * Makes call to the HTTP  and handles results
+		 */
 		Call<FlickerData> call = flickrApi.getFlickerDatas();
 
 

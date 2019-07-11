@@ -1,12 +1,17 @@
 package com.example.shoobs.flickrretrofit.model;
 
 
-import androidx.fragment.app.Fragment;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-public class Feed extends Fragment {
+public class Feed {
 
+	@SerializedName("title")
+	@Expose
 	private String title;
 
+	@SerializedName("media")
+	@Expose
 	private Media media;
 
 

@@ -1,12 +1,15 @@
 package com.example.shoobs.flickrretrofit.network;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.shoobs.flickrretrofit.model.Feed;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,6 +23,7 @@ public class FeedViewModel extends ViewModel {
 	private static final String LOG_TAG = FeedViewModel.class.getSimpleName();
 
 	private MutableLiveData<DataWrapper<Feed>> mutableLiveData;
+
 
 
 
@@ -37,17 +41,30 @@ public class FeedViewModel extends ViewModel {
 
 
 
-	public void loadData () {
+	public void loadData (final Context context) {
+
+
 
 		/**
 		 * Generates an implementation of the @FlickrApi interface
 		 */
 
 		final String BASE_URL = "https://api.flickr.com/services/feeds/";
+//		OkHttpClient client = new OkHttpClient.Builder()
+//				.addInterceptor(new ChuckInterceptor())
+//				.build();
+
+		OkHttpClient client = new OkHttpClient.Builder()
+				.addInterceptor(new ChuckInterceptor(context))
+				.build();
+
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl(BASE_URL)
+				.client(client)
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
+
+
 
 		FlickrApi flickrApi = retrofit.create(FlickrApi.class);
 
@@ -86,5 +103,6 @@ public class FeedViewModel extends ViewModel {
 		});
 
 	}
+
 
 }

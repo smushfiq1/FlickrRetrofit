@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 		SwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh () {
-				feedViewModel.loadData();
+				feedViewModel.loadData(MainActivity.this);
 			}
 		});
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 		networkCheck = new NetworkCheck(this);
 		if (networkCheck.isOnline()) {
 			feedViewModel.initialize();
-			feedViewModel.loadData();
+			feedViewModel.loadData(this);
 		} else {
 			settingsDialog();
 		}

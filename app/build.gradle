@@ -6,7 +6,7 @@ android {
 	compileSdkVersion 28
 	defaultConfig {
 		applicationId "com.example.shoobs.flickrretrofit"
-		minSdkVersion 21
+		minSdkVersion 26
 		targetSdkVersion 28
 		versionCode 1
 		versionName "1.0"
@@ -17,6 +17,12 @@ android {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 		}
+	}
+
+	// Keep the following configuration in order to target Java 8.
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
 	}
 }
 
@@ -29,10 +35,15 @@ dependencies {
 	androidTestImplementation 'androidx.test:runner:1.2.0'
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-	//retrofit dependency
+	implementation 'com.android.support:design:28.0.0'
+
+
+	//dependency for retrofit
 	implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 
 	implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+	implementation 'com.squareup.okhttp3:okhttp:3.12.0'
 
 	//dependency for CardView
 	implementation 'androidx.cardview:cardview:1.0.0'
@@ -43,11 +54,18 @@ dependencies {
 	implementation 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
 
 	//dependency for Material Components
-	implementation 'com.google.android.material:material:1.1.0-alpha07'
+	implementation 'com.google.android.material:material:1.1.0-alpha08'
 
 	//dependency for Android ViewModel
 	implementation "android.arch.lifecycle:extensions:1.1.1"
 
 	//dependency for oss-licenses
 	implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+
+	//dependency for LeakCanary
+	debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
+
+	//dependency for chuck library - inapp http inspector
+	debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+	releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 }

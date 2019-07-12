@@ -2,7 +2,6 @@ package com.example.shoobs.flickrretrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,13 +26,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity {
 
 	private static final String LOG_TAG = "SHUAIB";
 	private SwipeRefreshLayout SwipeRefresh;
 	ImagePagerAdapter adapter;
 	ViewPager viewPager;
 	NetworkCheck networkCheck;
+	FeedViewModel feedViewModel;
 
 
 
@@ -43,8 +43,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 		setContentView(R.layout.activity_main);
 
 		SwipeRefresh = findViewById(R.id.swipeRefresh);
-		SwipeRefresh.setOnRefreshListener(this);
-		SwipeRefresh.setRefreshing(true);
+		SwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh () {
+				feedViewModel.loadData();
+			}
+		});
 
 		viewPager = findViewById(R.id.view_pager);
 		viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
@@ -53,68 +57,47 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 		CirclePageIndicator mIndicator = findViewById(R.id.indicator);
 		mIndicator.setViewPager(viewPager);
 
-
 		/**
-		 * Added a handler here to test the loading indicator the first time the app runs. An IF statement in the handler to test network and then
-		 * loadData();
+		 * initializing viewModel
 		 */
-		networkCheck = new NetworkCheck(this);
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run () {
-
-				if (networkCheck.isOnline()) {
-					loadData();
-				} else {
-
-					settingsDialog();
-				}
-			}
-		}, 2000);
-
-		//loadData();
-	}
-
-
-
-	private void loadData () {
-		Log.d(LOG_TAG, "loadData");
-		FeedViewModel feedViewModel = ViewModelProviders.of(this).get(FeedViewModel.class);
-		feedViewModel.getFlickerDatas().observe(this, new Observer<DataWrapper<Feed>>() {
-
+		feedViewModel = ViewModelProviders.of(this).get(FeedViewModel.class);
+		feedViewModel.getFlickerData().observe(this, new Observer<DataWrapper<Feed>>() {
 
 			@Override
 			public void onChanged (final DataWrapper<Feed> dataWrapper) {
 				Log.d(LOG_TAG, "onChange");
-//				Handler handler = new Handler();
-//				handler.postDelayed(new Runnable() {
-//					@Override
-//					public void run() {
 
 				switch (dataWrapper.getStatus()) {
 					case NONE:
-						viewPager.setCurrentItem(0);
-						adapter.update(dataWrapper.getData());
 						SwipeRefresh.setRefreshing(false);
+						adapter.update(dataWrapper.getData());
+						viewPager.setCurrentItem(0);
+						Log.d(LOG_TAG, "NONE");
 						break;
 					case ERROR:
 						SwipeRefresh.setRefreshing(false);
 						errorData();
+						Log.d(LOG_TAG, "ERROR");
 						break;
 					case LOADING:
+						SwipeRefresh.setRefreshing(true);
+						Log.d(LOG_TAG, "LOADING");
 						break;
 
 				}
-//
-//					}
-//				}, 1000);
-//				}
-
 			}
-
 		});
 
+		/**
+		 * Checks to see if the device has network to load the data or settings to connect to a network
+		 */
+		networkCheck = new NetworkCheck(this);
+		if (networkCheck.isOnline()) {
+			feedViewModel.initialize();
+			feedViewModel.loadData();
+		} else {
+			settingsDialog();
+		}
 	}
 
 
@@ -141,14 +124,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
 
-	@Override
-	public void onRefresh () {
-		loadData();
-
-	}
-
-
-
 	/**
 	 * The MenuInflator class allows to inflate actions defined in the library.xml file and adds it to the action bar.
 	 */
@@ -165,8 +140,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 	@Override
 	public boolean onOptionsItemSelected (MenuItem item) {
 		if (item.getItemId() == R.id.license_info) {
-
-
 			startActivity(new Intent(this, OssLicensesMenuActivity.class));
 			return true;
 		}

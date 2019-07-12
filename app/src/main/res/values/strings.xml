@@ -10,7 +10,7 @@
     <string name="no_connection_title">No Internet Connection</string>
 
     <!--Your comment-->
-    <string name="no_connection">You need to be connected to ta network to use FlickrRetrofit. </string>
+    <string name="no_connection">You need to be connected to the network to use FlickrRetrofit. </string>
 
 
 

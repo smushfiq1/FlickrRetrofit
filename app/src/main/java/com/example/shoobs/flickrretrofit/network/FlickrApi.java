@@ -12,5 +12,5 @@ public interface FlickrApi {
 	String PATH = "photos_public.gne?format=json&nojsoncallback=1";
 
 	@GET(PATH)
-	Call<FlickerData> getFlickerDatas ();
+	Call<FlickerData> getFlickerData ();
 }

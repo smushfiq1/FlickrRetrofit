@@ -20,6 +20,7 @@ public class DataWrapper<T> {
 
 
 	public DataWrapper () {
+		status = Status.NONE;
 		data = new ArrayList<>();
 	}
 

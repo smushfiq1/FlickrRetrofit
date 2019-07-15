@@ -29,7 +29,7 @@ public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 	@Override
 	public Fragment getItem (int i) {
 		Feed feed = data.get(i);
-		return FlickrItemFragment.getFragment(feed.getMedia().getM(), feed.getTitle());
+		return FlickrItemFragment.getFragment(feed.getMedia().getM(), feed.getTitle(), feed.getAuthor(), feed.getDateTaken(), feed.getTags());
 	}
 
 

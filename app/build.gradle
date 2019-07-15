@@ -68,4 +68,6 @@ dependencies {
 	//dependency for chuck library - inapp http inspector
 	debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
 	releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
+	implementation 'com.alespero:expandable-cardview:0.8'
 }

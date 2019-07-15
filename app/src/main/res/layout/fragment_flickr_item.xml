@@ -9,9 +9,11 @@
 
 	<com.google.android.material.card.MaterialCardView
 		android:id="@+id/card_view"
+		style="@style/Widget.MaterialComponents.CardView"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_gravity="center"
+		android:foreground="?android:attr/selectableItemBackground"
 		app:cardBackgroundColor="@color/colorDivider"
 		app:cardCornerRadius="9dp"
 		app:cardElevation="10dp"
@@ -21,31 +23,30 @@
 		app:layout_constraintRight_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="parent">
 
-		<LinearLayout
+		<com.alespero.expandablecardview.ExpandableCardView
+			android:id="@+id/image_title"
+			style="@style/Base.TextAppearance.AppCompat.Title"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:animateLayoutChanges="true"
+			android:clickable="true"
+			android:textStyle="bold"
+			app:animationDuration="400"
+			app:expandOnClick="true"
+			app:fontFamily="sans-serif"
+			app:inner_view="@layout/expand_view"
+			app:layout_constraintTop_toBottomOf="@+id/card_view"
+			app:startExpanded="false"/>
 
-			<TextView
-				android:id="@+id/image_title"
-				style="@style/Base.TextAppearance.AppCompat.Title"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical"
-				android:maxLines="1"
-				android:textStyle="bold"
-				app:fontFamily="sans-serif"/>
+		<ImageView
+			android:id="@+id/image_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layout_constraintBottom_toBottomOf="parent"
 
-			<ImageView
-				android:id="@+id/image_view"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintTop_toBottomOf="@+id/image_title"
-				tools:ignore="ContentDescription"/>
-
-		</LinearLayout>
+			tools:ignore="ContentDescription"/>
 
 	</com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

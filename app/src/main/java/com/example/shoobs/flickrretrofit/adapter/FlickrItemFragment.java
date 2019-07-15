@@ -23,13 +23,19 @@ public class FlickrItemFragment extends Fragment {
 
 	private String imageUrl;
 	private String imageTitle;
+	private String imageDate;
+	private String imageAuthor;
+	private String imageTags;
 
 
 
-	public static FlickrItemFragment getFragment (String url, String title) {
+	public static FlickrItemFragment getFragment (String url, String title, String author, String date_taken, String tags) {
 		Bundle bundle = new Bundle();
 		bundle.putString("DATA.URL", url);
 		bundle.putString("DATA.TITLE", title);
+		bundle.putString("DATA.AUTHOR", author);
+		bundle.putString("DATA.DATE_TAKEN", date_taken);
+		bundle.putString("DATA.TAGS", tags);
 		FlickrItemFragment flickrItemFragment = new FlickrItemFragment();
 		flickrItemFragment.setArguments(bundle);
 		return flickrItemFragment;
@@ -56,6 +62,23 @@ public class FlickrItemFragment extends Fragment {
 		} else {
 			imageTitle = "";
 		}
+		if (getArguments() != null && getArguments().containsKey("DATA.AUTHOR")) {
+			imageAuthor = getArguments().getString("DATA.AUTHOR");
+		} else {
+			imageAuthor = "";
+		}
+		if (getArguments() != null && getArguments().containsKey("DATA.DATE_TAKEN")) {
+			imageDate = getArguments().getString("DATA.DATE_TAKEN");
+		} else {
+			imageDate = "";
+		}
+
+		if (getArguments() != null && getArguments().containsKey("DATA.TAGS")) {
+			imageTags = getArguments().getString("DATA.TAGS");
+		} else {
+			imageTags = "";
+		}
+
 	}
 
 
@@ -87,7 +110,21 @@ public class FlickrItemFragment extends Fragment {
 				.centerInside()
 				.into((ImageView) view.findViewById(R.id.image_view));
 
-		((TextView) view.findViewById(R.id.image_title)).setText(imageTitle);
+		((com.alespero.expandablecardview.ExpandableCardView) view.findViewById(R.id.image_title)).setTitle(imageTitle);
+
+		if (imageAuthor.contains("nobody@flickr.com")) {
+			imageAuthor = imageAuthor.replace("nobody@flickr.com", "");
+			imageAuthor = imageAuthor.replace("(", "");
+			imageAuthor = imageAuthor.replace(")", "");
+			imageAuthor = imageAuthor.replace("\"", "");
+		}
+		((TextView) view.findViewById(R.id.image_author)).setText(" Author: " + imageAuthor);
+
+		String date = imageDate.split("T")[0];
+		((TextView) view.findViewById(R.id.image_date)).setText(" Date Taken: " + date);
+
+		((TextView) view.findViewById(R.id.image_tags)).setText(" Tags: " + imageTags);
+
 	}
 
 }

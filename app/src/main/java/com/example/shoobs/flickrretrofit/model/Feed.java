@@ -14,6 +14,20 @@ public class Feed {
 	@Expose
 	private Media media;
 
+	@SerializedName("date_taken")
+	@Expose
+	private String dateTaken;
+
+
+	@SerializedName("author")
+	@Expose
+	private String author;
+
+
+	@SerializedName("tags")
+	@Expose
+	private String tags;
+
 
 
 	public String getTitle () {
@@ -28,11 +42,32 @@ public class Feed {
 
 
 
+	public String getDateTaken () {
+		return dateTaken;
+	}
+
+
+
+	public String getAuthor () {
+		return author;
+	}
+
+
+
+	public String getTags () {
+		return tags;
+	}
+
+
+
 	@Override
 	public String toString () {
 		return "Feed{" +
 				"title='" + title + '\'' +
 				", media=" + media +
+				", dateTaken='" + dateTaken + '\'' +
+				", author='" + author + '\'' +
+				", tags='" + tags + '\'' +
 				'}';
 	}
 

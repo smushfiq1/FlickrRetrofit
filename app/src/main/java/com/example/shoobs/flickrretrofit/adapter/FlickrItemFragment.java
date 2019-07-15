@@ -118,12 +118,12 @@ public class FlickrItemFragment extends Fragment {
 			imageAuthor = imageAuthor.replace(")", "");
 			imageAuthor = imageAuthor.replace("\"", "");
 		}
-		((TextView) view.findViewById(R.id.image_author)).setText(" Author: " + imageAuthor);
+		((TextView) view.findViewById(R.id.image_author)).setText(imageAuthor);
 
 		String date = imageDate.split("T")[0];
-		((TextView) view.findViewById(R.id.image_date)).setText(" Date Taken: " + date);
+		((TextView) view.findViewById(R.id.image_date)).setText(date);
 
-		((TextView) view.findViewById(R.id.image_tags)).setText(" Tags: " + imageTags);
+		((TextView) view.findViewById(R.id.image_tags)).setText(imageTags);
 
 	}
 

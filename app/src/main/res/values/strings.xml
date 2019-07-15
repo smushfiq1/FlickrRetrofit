@@ -1,24 +1,24 @@
 <resources>
-    <string name="app_name">FlickrRetrofit</string>
+	<string name="app_name">FlickrRetrofit</string>
 
-    <!--Menu-->
-    <string name="license_info">license_info</string>
+	<!--Menu-->
+	<string name="license_info">license_info</string>
 
+	<!--Your comment-->
+	<string name="no_connection_title">No Internet Connection</string>
 
+	<!--Your comment-->
+	<string name="no_connection">You need to be connected to the network to use FlickrRetrofit. </string>
 
-    <!--Your comment-->
-    <string name="no_connection_title">No Internet Connection</string>
+	<!--Your comment-->
+	<string name="settings">Go to Settings</string>
 
-    <!--Your comment-->
-    <string name="no_connection">You need to be connected to the network to use FlickrRetrofit. </string>
+	<!--Your comment-->
+	<string name="cancel">Cancel</string>
 
-
-
-    <!--Your comment-->
-    <string name="settings">Go to Settings</string>
-
-
-    <!--Your comment-->
-    <string name="cancel">Cancel</string>
+	<!--Chips-->
+	<string name="Author">Author:</string>
+	<string name="Date_Taken">Date:</string>
+	<string name="Tags">Tags:</string>
 
 </resources>

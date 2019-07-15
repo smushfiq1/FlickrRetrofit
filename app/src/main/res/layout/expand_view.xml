@@ -11,26 +11,71 @@
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
 
-		<TextView
-			android:id="@+id/image_author"
+		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="match_parent">
 
-		<TextView
-			android:id="@+id/image_date"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/image_author"
-			tools:ignore="ContentDescription"/>
+			<com.google.android.material.chip.Chip
+				android:id="@+id/image_author_chips"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="5dp"
+				android:text="@string/Author"/>
 
-		<TextView
-			android:id="@+id/image_tags"
+			<TextView
+				android:id="@+id/image_author"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignStart="@id/image_author_chips"
+				android:layout_alignBottom="@+id/image_author_chips"
+				android:layout_marginStart="75dp"
+				android:layout_marginBottom="15dp"/>
+
+		</RelativeLayout>
+
+		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="60dp"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/image_date"
-			tools:ignore="ContentDescription"/>
+			android:layout_height="match_parent">
+
+			<com.google.android.material.chip.Chip
+				android:id="@+id/image_date_chips"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="5dp"
+				android:text="@string/Date_Taken"/>
+
+			<TextView
+				android:id="@+id/image_date"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignStart="@id/image_date_chips"
+				android:layout_alignBottom="@+id/image_date_chips"
+				android:layout_marginStart="75dp"
+				android:layout_marginBottom="15dp"/>
+
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<com.google.android.material.chip.Chip
+				android:id="@+id/image_tags_chips"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="5dp"
+				android:text="@string/Tags"/>
+
+			<TextView
+				android:id="@+id/image_tags"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignStart="@id/image_tags_chips"
+				android:layout_alignBottom="@+id/image_tags_chips"
+				android:layout_marginStart="75dp"
+				android:layout_marginBottom="15dp"/>
+
+		</RelativeLayout>
 
 	</LinearLayout>
 

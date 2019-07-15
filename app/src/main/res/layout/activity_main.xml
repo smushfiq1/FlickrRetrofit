@@ -20,12 +20,12 @@
 			android:layout_above="@id/indicator"/>
 
 		<com.viewpagerindicator.CirclePageIndicator
-			android:layout_alignParentBottom="true"
 			android:id="@+id/indicator"
 			style="@style/CustomCirclePageIndicator"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:padding="8dp" />
+			android:layout_alignParentBottom="true"
+			android:padding="8dp"/>
 
 	</RelativeLayout>
 

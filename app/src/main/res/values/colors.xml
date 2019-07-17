@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF5252</color>
     <color name="colorLightPrimary">#BBDEFB</color>
     <color name="colorText">#212121</color>
-    <color name="colorSecondaryText">#E0E0E0</color>
+    <color name="colorSecondaryText">#e3f2fd</color>
     <color name="colorDivider">#EEEEEE</color>
+    <color name="colorCardBack">#FFFFFF</color>
 </resources>

@@ -4,17 +4,17 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	android:layout_height="wrap_content"
 	android:orientation="vertical">
 
 	<com.google.android.material.card.MaterialCardView
 		android:id="@+id/card_view"
 		style="@style/Widget.MaterialComponents.CardView"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:foreground="?android:attr/selectableItemBackground"
-		app:cardBackgroundColor="@color/colorDivider"
+		app:cardBackgroundColor="@color/colorCardBack"
 		app:cardCornerRadius="9dp"
 		app:cardElevation="10dp"
 		app:cardPreventCornerOverlap="true"
@@ -23,30 +23,34 @@
 		app:layout_constraintRight_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="parent">
 
-		<com.alespero.expandablecardview.ExpandableCardView
-			android:id="@+id/image_title"
-			style="@style/Base.TextAppearance.AppCompat.Title"
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:animateLayoutChanges="true"
-			android:clickable="true"
-			android:textStyle="bold"
-			app:animationDuration="400"
-			app:expandOnClick="true"
-			app:fontFamily="sans-serif"
-			app:inner_view="@layout/expand_view"
-			app:layout_constraintTop_toBottomOf="@+id/card_view"
-			app:startExpanded="false"/>
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
 
-		<ImageView
-			android:id="@+id/image_view"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			app:layout_constraintBottom_toBottomOf="parent"
+			<com.alespero.expandablecardview.ExpandableCardView
+				android:id="@+id/image_title"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:animateLayoutChanges="true"
+				android:clickable="true"
+				android:textStyle="bold"
+				app:animationDuration="400"
+				app:expandOnClick="true"
+				app:fontFamily="sans-serif"
+				app:inner_view="@layout/expand_view"
+				app:layout_constraintTop_toBottomOf="@+id/card_view"
+				app:startExpanded="false"/>
 
-			tools:ignore="ContentDescription"/>
+			<ImageView
+				android:id="@+id/image_view"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:scaleType="fitXY"
+				tools:ignore="ContentDescription"/>
+
+		</LinearLayout>
 
 	</com.google.android.material.card.MaterialCardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

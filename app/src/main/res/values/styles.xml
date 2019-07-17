@@ -3,16 +3,16 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="CustomCirclePageIndicator">
-        <item name="fillColor">#000000</item>
-        <item name="strokeColor">#BDBDBD</item>
+        <item name="fillColor">#90caf9</item>
+        <item name="strokeColor">#90caf9</item>
         <item name="strokeWidth">2dp</item>
-        <item name="radius">4dp</item>
+        <item name="radius">5dp</item>
         <item name="centered">true</item>
     </style>
 

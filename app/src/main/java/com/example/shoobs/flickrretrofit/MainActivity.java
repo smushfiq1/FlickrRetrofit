@@ -10,8 +10,6 @@ import android.view.MenuItem;
 import com.example.shoobs.flickrretrofit.adapter.ImagePagerAdapter;
 import com.example.shoobs.flickrretrofit.adapter.NoNetworkAlert;
 import com.example.shoobs.flickrretrofit.adapter.ZoomOutPageTransformer;
-import com.example.shoobs.flickrretrofit.model.Feed;
-import com.example.shoobs.flickrretrofit.network.DataWrapper;
 import com.example.shoobs.flickrretrofit.network.FeedViewModel;
 import com.example.shoobs.flickrretrofit.network.NetworkCheck;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
@@ -20,7 +18,6 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -61,30 +58,26 @@ public class MainActivity extends AppCompatActivity {
 		 * initializing viewModel
 		 */
 		feedViewModel = ViewModelProviders.of(this).get(FeedViewModel.class);
-		feedViewModel.getFlickerData().observe(this, new Observer<DataWrapper<Feed>>() {
+		feedViewModel.getFlickerData().observe(this, dataWrapper -> {
+			Log.d(LOG_TAG, "onChange");
 
-			@Override
-			public void onChanged (final DataWrapper<Feed> dataWrapper) {
-				Log.d(LOG_TAG, "onChange");
+			switch (dataWrapper.getStatus()) {
+				case NONE:
+					SwipeRefresh.setRefreshing(false);
+					adapter.update(dataWrapper.getData());
+					viewPager.setCurrentItem(0);
+					Log.d(LOG_TAG, "NONE");
+					break;
+				case ERROR:
+					SwipeRefresh.setRefreshing(false);
+					errorData();
+					Log.d(LOG_TAG, "ERROR");
+					break;
+				case LOADING:
+					SwipeRefresh.setRefreshing(true);
+					Log.d(LOG_TAG, "LOADING");
+					break;
 
-				switch (dataWrapper.getStatus()) {
-					case NONE:
-						SwipeRefresh.setRefreshing(false);
-						adapter.update(dataWrapper.getData());
-						viewPager.setCurrentItem(0);
-						Log.d(LOG_TAG, "NONE");
-						break;
-					case ERROR:
-						SwipeRefresh.setRefreshing(false);
-						errorData();
-						Log.d(LOG_TAG, "ERROR");
-						break;
-					case LOADING:
-						SwipeRefresh.setRefreshing(true);
-						Log.d(LOG_TAG, "LOADING");
-						break;
-
-				}
 			}
 		});
 

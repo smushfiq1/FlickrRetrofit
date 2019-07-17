@@ -18,11 +18,13 @@ public class Feed {
 	@Expose
 	private String dateTaken;
 
-
 	@SerializedName("author")
 	@Expose
 	private String author;
 
+	@SerializedName("author_id")
+	@Expose
+	private String author_id;
 
 	@SerializedName("tags")
 	@Expose
@@ -54,6 +56,12 @@ public class Feed {
 
 
 
+	public String getAuthorId () {
+		return author_id;
+	}
+
+
+
 	public String getTags () {
 		return tags;
 	}
@@ -67,6 +75,7 @@ public class Feed {
 				", media=" + media +
 				", dateTaken='" + dateTaken + '\'' +
 				", author='" + author + '\'' +
+				", author_id='" + author_id + '\'' +
 				", tags='" + tags + '\'' +
 				'}';
 	}

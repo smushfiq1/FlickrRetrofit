@@ -9,27 +9,42 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		android:padding="2dp">
 
 		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="wrap_content">
 
-			<com.google.android.material.chip.Chip
-				android:id="@+id/image_author_chips"
+			<ImageView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginStart="5dp"
-				android:text="@string/Author"/>
+				android:layout_marginStart="1dp"
+				android:layout_marginTop="12dp"
+				app:srcCompat="@drawable/author_chip"
+				tools:ignore="ContentDescription"/>
 
 			<TextView
 				android:id="@+id/image_author"
+				style="@style/Base.TextAppearance.AppCompat.Button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignStart="@id/image_author_chips"
-				android:layout_alignBottom="@+id/image_author_chips"
-				android:layout_marginStart="75dp"
-				android:layout_marginBottom="15dp"/>
+				android:layout_marginStart="30dp"
+				android:layout_marginTop="15dp"
+				android:text="@string/Author"
+
+				/>
+
+			<com.google.android.material.chip.Chip
+				android:id="@+id/image_author_chips"
+				style="@style/Widget.MaterialComponents.Chip.Choice"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="95dp"
+				android:backgroundTint="@color/colorSecondaryText"
+				android:text="@string/Author"
+
+				/>
 
 		</RelativeLayout>
 
@@ -37,43 +52,75 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent">
 
-			<com.google.android.material.chip.Chip
-				android:id="@+id/image_date_chips"
+			<ImageView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginStart="5dp"
-				android:text="@string/Date_Taken"/>
+				android:layout_marginStart="1dp"
+				android:layout_marginTop="12dp"
+				app:srcCompat="@drawable/date_chip"
+				tools:ignore="ContentDescription"/>
 
 			<TextView
 				android:id="@+id/image_date"
+				style="@style/Base.TextAppearance.AppCompat.Button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignStart="@id/image_date_chips"
-				android:layout_alignBottom="@+id/image_date_chips"
-				android:layout_marginStart="75dp"
-				android:layout_marginBottom="15dp"/>
+				android:layout_marginStart="30dp"
+				android:layout_marginTop="15dp"
+				android:text="@string/Date_Taken"
+
+				/>
+
+			<com.google.android.material.chip.Chip
+				android:id="@+id/image_date_chips"
+				style="@style/Widget.MaterialComponents.Chip.Choice"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="95dp"
+				android:backgroundTint="@color/colorSecondaryText"
+				android:clickable="false"
+				android:text="@string/Date_Taken"/>
 
 		</RelativeLayout>
 
 		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="match_parent"
+			android:paddingBottom="15dp">
 
-			<com.google.android.material.chip.Chip
-				android:id="@+id/image_tags_chips"
+			<ImageView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginStart="5dp"
-				android:text="@string/Tags"/>
+				android:layout_marginStart="1dp"
+				android:layout_marginTop="12dp"
+				app:srcCompat="@drawable/tag_chip"
+				tools:ignore="ContentDescription"/>
 
 			<TextView
 				android:id="@+id/image_tags"
+				style="@style/Base.TextAppearance.AppCompat.Button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignStart="@id/image_tags_chips"
-				android:layout_alignBottom="@+id/image_tags_chips"
-				android:layout_marginStart="75dp"
-				android:layout_marginBottom="15dp"/>
+				android:layout_marginStart="30dp"
+				android:layout_marginTop="15dp"
+				android:text="@string/Tags"/>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginStart="95dp"
+				android:layout_marginTop="12dp">
+
+				<com.google.android.material.chip.ChipGroup
+					android:id="@+id/chipgroup"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:backgroundTint="@color/colorSecondaryText"
+					android:clickable="false"
+					app:chipSpacing="10dp"
+					app:singleSelection="true"/>
+
+			</RelativeLayout>
 
 		</RelativeLayout>
 
